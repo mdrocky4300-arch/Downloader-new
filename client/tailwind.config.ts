@@ -9,20 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#2563EB",
-        secondary: "#7C3AED",
-        accent: "#06B6D4",
         background: "#050816",
-        cards: "#111827",
-        text: "#FFFFFF"
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        foreground: "#ededed",
+        cards: "#0a0a0a",
+        primary: "#ffffff",
+        muted: "#888888",
+        border: "rgba(255,255,255,0.08)",
+        "border-hover": "rgba(255,255,255,0.15)",
+        accent: "#2563eb",
       },
       fontFamily: {
         sans: ['var(--font-inter)'],
+      },
+      boxShadow: {
+        'glass': '0 4px 30px rgba(0, 0, 0, 0.5)',
+        'glow': '0 0 20px rgba(255, 255, 255, 0.05)',
+        'inner-light': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
+      },
+      backgroundImage: {
+        'grid-pattern': 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)',
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       }
     },
   },

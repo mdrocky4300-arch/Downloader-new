@@ -6,10 +6,15 @@ import { BarChart3, Download, Settings, Activity } from "lucide-react";
 
 export default function AdminDashboard() {
   const [data, setData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [password, setPassword] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (!isAuthenticated) return;
+    
     const fetchSettings = async () => {
+      setIsLoading(true);
       try {
         const res = await api.get("/settings");
         setData(res.data);
@@ -20,7 +25,42 @@ export default function AdminDashboard() {
       }
     };
     fetchSettings();
-  }, []);
+  }, [isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return (
+      <div className="container mx-auto px-4 py-32 max-w-md flex-grow flex items-center justify-center">
+        <div className="glass-card p-8 w-full border-t-4 border-t-primary">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center flex items-center justify-center gap-2">
+            <Settings className="w-6 h-6 text-primary" /> Admin Access
+          </h2>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            if (password === "admin123") {
+              setIsAuthenticated(true);
+            } else {
+              alert("Incorrect password!");
+            }
+          }}>
+            <input
+              type="password"
+              placeholder="Enter admin password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary mb-6 transition-all"
+              autoFocus
+            />
+            <button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl transition-all"
+            >
+              Login
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (

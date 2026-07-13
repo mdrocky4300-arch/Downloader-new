@@ -7,34 +7,12 @@ import { Footer } from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const viewport = {
-  themeColor: "#050816",
+  themeColor: "#000000",
 };
 
 export const metadata: Metadata = {
-  title: "Universal Video Downloader",
-  description: "Ultra-modern, premium quality downloader for web videos.",
-  manifest: "/manifest.json",
-  openGraph: {
-    title: "Universal Video Downloader",
-    description: "Ultra-modern, premium quality downloader for web videos.",
-    url: "https://universaldl.com",
-    siteName: "Universal DL",
-    images: [
-      {
-        url: "https://universaldl.com/og.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Universal Video Downloader",
-    description: "Ultra-modern, premium quality downloader for web videos.",
-    images: ["https://universaldl.com/og.png"],
-  },
+  title: "Universal DL — Premium Web Video Downloader",
+  description: "The fastest, most secure way to download videos from the web.",
 };
 
 export default function RootLayout({
@@ -44,14 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} font-sans flex flex-col min-h-screen relative`}>
-        {/* Animated Shapes Background */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[120px] mix-blend-screen" />
-          <div className="absolute top-[20%] right-[-10%] w-[30%] h-[30%] rounded-full bg-secondary/20 blur-[100px] mix-blend-screen" />
-          <div className="absolute bottom-[-10%] left-[20%] w-[50%] h-[50%] rounded-full bg-accent/20 blur-[150px] mix-blend-screen" />
-        </div>
+      <body className={`${inter.variable} font-sans flex flex-col min-h-screen relative bg-background text-[#ededed]`}>
         
+        {/* Subtle animated grid background (Linear inspired) */}
+        <div className="fixed inset-0 z-[-1] bg-grid opacity-[0.4] pointer-events-none" />
+        
+        {/* Super soft center glow */}
+        <div className="fixed inset-0 z-[-1] flex items-center justify-center pointer-events-none">
+          <div className="w-[600px] h-[600px] rounded-full bg-white/5 blur-[120px]" />
+        </div>
+
         <Navbar />
         <main className="flex-grow flex flex-col">
           {children}

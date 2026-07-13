@@ -24,3 +24,12 @@ export const deleteHistory = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to delete history item" });
   }
 };
+
+export const clearAllHistory = async (req: Request, res: Response) => {
+  try {
+    await prisma.history.deleteMany();
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to clear history" });
+  }
+};

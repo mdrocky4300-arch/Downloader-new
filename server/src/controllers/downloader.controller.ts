@@ -120,6 +120,23 @@ export const downloadVideo = async (req: Request, res: Response) => {
       }
     });
 
+    // Keep only the 10 most recent history entries
+    const historyCount = await prisma.history.count();
+    if (historyCount > 10) {
+      const recordsToKeep = await prisma.history.findMany({
+        orderBy: { createdAt: 'desc' },
+        take: 10,
+        select: { id: true }
+      });
+      const idsToKeep = recordsToKeep.map(r => r.id);
+      
+      await prisma.history.deleteMany({
+        where: {
+          id: { notIn: idsToKeep }
+        }
+      });
+    }
+
     const tempDir = path.join(process.cwd(), "temp");
     if (!fs.existsSync(tempDir)) {
       fs.mkdirSync(tempDir, { recursive: true });
