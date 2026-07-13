@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model History {
+  id        String   @id @default(uuid())
+  title     String
+  thumbnail String?
+  url       String
+  format    String
+  duration  Int?
+  size      String?
+  status    String   @default("COMPLETED") // COMPLETED, FAILED, DOWNLOADING
+  createdAt DateTime @default(now())
+}
+
+model Settings {
+  id              String   @id @default("default")
+  maintenanceMode Boolean  @default(false)
+  updatedAt       DateTime @updatedAt
+}
