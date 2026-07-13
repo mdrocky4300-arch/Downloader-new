@@ -1,0 +1,64 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Dependencies
+node_modules
+.pnp
+
+# Testing
+coverage
+.nyc_output
+test
+__tests__
+*.test.ts
+*.spec.ts
+
+# IDEs
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+*.pem
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Environment
+.env*
+.env.local
+.env.*.local
+
+# Build
+dist
+build
+.turbo
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.circleci
+.travis.yml
+Jenkinsfile
+
+# Documentation
+README.md
+CHANGELOG.md
+docs
+
+# TypeScript
+*.tsbuildinfo
+
+# Database
+*.db
+*.sqlite
+data/dev.db
+
+# Downloads
+downloads/*
